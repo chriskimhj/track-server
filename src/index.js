@@ -1,8 +1,13 @@
+require('./models/User');
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 
 const app = express();
+app.use(bodyParser.json());
+app.use(authRoutes);
 
 const mongoUri = process.env.MONGOURI;
 mongoose.connect(mongoUri);
